@@ -1,5 +1,6 @@
 package mail;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import mail.common.LoginPage;
 import mail.common.Message;
 import mail.draft.HomePageDraft;
@@ -24,7 +25,7 @@ public class MailTest {
 
         logger = LoggerFactory.getLogger(MailTest.class);
 
-        System.setProperty("webdriver.chrome.driver", "C:\\Dev\\chromedriver\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
@@ -39,7 +40,7 @@ public class MailTest {
     @AfterEach
     public void end() {
 
-        driver.quit();
+        //driver.quit();
     }
 
     @Test

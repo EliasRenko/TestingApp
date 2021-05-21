@@ -1,5 +1,6 @@
 package mail.common;
 
+import mail.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,16 +18,16 @@ public class LoginPage {
 
     final private String passwordValue = "testAutomationTask1234";
 
-    @FindBy(xpath = "//*[@id=\"passp-field-login\"]")
+    @FindBy(xpath = Properties.username)
     private WebElement username;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div[2]/div/div/div[2]/div[3]/div/div/div/div[1]/form/div[3]/button")
+    @FindBy(xpath = Properties.signInButton)
     private WebElement signInButton;
 
-    @FindBy(xpath = "//*[@id=\"passp-field-passwd\"]")
+    @FindBy(xpath = Properties.password)
     private WebElement password;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div[2]/div/div/div[2]/div[3]/div/div/div/form/div[3]/button")
+    @FindBy(xpath = Properties.loginButton)
     private WebElement loginButton;
 
     public LoginPage(WebDriver driver) {

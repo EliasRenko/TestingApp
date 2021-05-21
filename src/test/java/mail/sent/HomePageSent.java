@@ -1,5 +1,6 @@
 package mail.sent;
 
+import mail.Properties;
 import mail.common.Message;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -21,44 +22,38 @@ public class HomePageSent {
 
     private Logger logger;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/form/div[1]/div[1]/span[1]/a")
+    @FindBy(xpath = Properties.newMailButton)
     private WebElement newMailButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/form/div[2]/div/table/tbody/tr[1]/td[2]/div/div/input")
+    @FindBy(xpath = Properties.receiverInput)
     private WebElement receiverInput;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/form/div[2]/div/table/tbody/tr[4]/td[2]/div/div/input")
+    @FindBy(xpath = Properties.titleInput)
     private WebElement titleInput;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/form/div[2]/div/textarea")
+    @FindBy(xpath = Properties.bodyInput)
     private WebElement bodyInput;
 
-    @FindBy(xpath = "//*[@id=\"main\"]/div/div/input[2]")
+    @FindBy(xpath = Properties.sendButton)
     private WebElement sendButton;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[1]/div/div[1]/span[2]")
+    @FindBy(xpath = Properties.openSentFolder)
     private WebElement openSentFolder;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/form/div[3]/div")
+    @FindBy(xpath = Properties.messageList)
     private WebElement messageList;
 
-    @FindBy(xpath = "/html/body/div[1]/div[1]/div[3]/a[2]")
-    private WebElement logoutButton;
-
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/span/a")
+    @FindBy(xpath = Properties.sentReceiverInput)
     private WebElement sentReceiverInput;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div/span")
+    @FindBy(xpath = Properties.sentTitleInput)
     private WebElement sentTitleInput;
 
-    @FindBy(xpath = "/html/body/div[1]/div[2]/div[2]/div[2]/div[2]/div/p")
+    @FindBy(xpath = Properties.sentBodyInput)
     private WebElement sentBodyInput;
 
-    private final String messagePath = "//*[@class='b-messages__message' or @class='b-messages__message b-messages__message_last']";
-
-    private final String messageSubjectPath = "//*[@class='b-messages__subject']";
-
-    private final String messageNamePath = "//*[@class='b-messages__from__text']";
+    @FindBy(xpath = Properties.logoutButton)
+    private WebElement logoutButton;
 
     public HomePageSent(WebDriver driver, Message testMessage) {
         logger = LoggerFactory.getLogger(HomePageSent.class);
@@ -86,13 +81,13 @@ public class HomePageSent {
 
         WebElement foundElement = null;
 
-        List<WebElement> messages = messageList.findElements(By.xpath(messagePath));
+        List<WebElement> messages = messageList.findElements(By.xpath(Properties.message));
 
         for (WebElement e : messages) {
-            var subject = e.findElement(By.xpath(messageSubjectPath));
+            var subject = e.findElement(By.xpath(Properties.messageSubject));
 
             if (subject.getText().equals(testMessage.title)) {
-                foundElement = e.findElement(By.xpath(messageNamePath));
+                foundElement = e.findElement(By.xpath(Properties.messageName));
                 break;
             }
         }

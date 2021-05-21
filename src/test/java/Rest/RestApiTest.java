@@ -16,7 +16,7 @@ public class RestApiTest {
     public final String url = "https://swapi.dev/api/films";
 
     @Test
-    @DisplayName("Тестирование RestAPI")
+    @DisplayName("Rest test")
     public void TestSWAPI() {
 
         Logger logger = LoggerFactory.getLogger(RestApiTest.class);
